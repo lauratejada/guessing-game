@@ -2,17 +2,21 @@
 
 const btnReset = document.querySelector('.reset');
 const btnGuess = document.querySelector('.guess');
-const input = document.querySelector('.input');
+const input = document.querySelector('.input-value');
 const message = document.querySelector('.guessing-counter p');
 let counterMessage = new String();
+let randNum = '';
 let counter = 0;
 counterMessage = '';
+console.log(input);
+console.log(input.value);
+//showMessage(counterMessage);
 
-function returnRandomNumber(){
-    return (Math.floor(Math.random() * (50 - 5 + 1) ) + 5).toString();
+function returnRandomNumber() {
+    return (Math.floor(Math.random() * (15 - 5 + 1) ) + 5).toString();
 }
 
-console.log(returnRandomNumber());
+randNum = returnRandomNumber();
 
 function isNumber(strNum) { 
     let patternNum = /^\d+(\.\d+)?$/g; 
@@ -23,7 +27,7 @@ function isNumber(strNum) {
 
 function isRangeValid(num) {
     let numAux = parseInt(num);
-    return (numAux >= 5 && numAux <= 50) ? true : false;  
+    return (numAux >= 5 && numAux <= 15) ? true : false;  
 }
 
 function showMessage(stringResult1){
@@ -32,17 +36,21 @@ function showMessage(stringResult1){
 }
 
 btnGuess.addEventListener('click', function() {
-   // console.log(this.value);
-    if (input !== null) {
-        if (isRangeValid(input) && isNumber(input)){
-            if (input === '') {
+    console.log(input.value);
+    console.log('random # is ' + randNum);
+
+    if (input.value !== null || input.value !== '') {
+        console.log('input not null or empty');
+        if (isRangeValid(input.value) && isNumber(input.value)){
+            console.log('input is valid');
+            if (input.value === randNum) {
                 showMessage(`Hurray!! you guessed the number`);
             } else {
                 counter++;
                 showMessage(`Guesses: ${counter}`);
             }
         } else {
-            showMessage('Type a valid number > 5 and < 50');
+            showMessage('Type a valid number > 5 and < 15');
         }
     } else {
         showMessage('Type or choose number');
@@ -54,5 +62,6 @@ btnReset.addEventListener('click', function() {
     counterMessage = '';
     counter = 0;
     input.value = 0;
-    //showMessage(counterMessage);
+    showMessage(counterMessage);
+    randNum = returnRandomNumber();
 });
