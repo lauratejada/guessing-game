@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Laura Tejada">
+    <meta name="description" content="Guessing Game">
+    <meta name="keywords" content="html, css, web, web development">
+    <title>Guessing Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">     
+    <link rel="stylesheet" href="styles/index.css" media="all">
+    <script src="scripts/index.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="title">
+                <h1>Guessing Game</h1>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <section>
+                <div class="guessing-counter">
+                     <p></p>
+                </div>
+                <form>
+                    <input class="input" type="number" pattern="number" placeholder="0">
+                    <button class="btn guess" value="guess">Guess</button>
+                    <button class="btn reset" value="reset">Reset</button>
+                </form>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
