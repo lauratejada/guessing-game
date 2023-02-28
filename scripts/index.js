@@ -2,9 +2,17 @@
 
 const btnReset = document.querySelector('.reset');
 const btnGuess = document.querySelector('.guess');
-const showCounter = document.querySelector('.guessing-counter p');
-let counterString = new String();
-counterString = '';
+const input = document.querySelector('.input');
+const message = document.querySelector('.guessing-counter p');
+let counterMessage = new String();
+let counter = 0;
+counterMessage = '';
+
+function returnRandomNumber(){
+    return (Math.floor(Math.random() * (50 - 5 + 1) ) + 5).toString();
+}
+
+console.log(returnRandomNumber());
 
 function isNumber(strNum) { 
     let patternNum = /^\d+(\.\d+)?$/g; 
@@ -18,18 +26,33 @@ function isRangeValid(num) {
     return (numAux >= 5 && numAux <= 50) ? true : false;  
 }
 
-function showResult(stringResult1){
-    showCounter.innerText = stringResult1;
+function showMessage(stringResult1){
+    message.innerText = stringResult1;
+    console.log(stringResult1);
 }
 
-btnReset.addEventListener('click', function() {
-        console.log(this.value);
-        counterString = '';
-        showResult(counterString);
-});
-
 btnGuess.addEventListener('click', function() {
-    console.log(this.value);
-
+   // console.log(this.value);
+    if (input !== null) {
+        if (isRangeValid(input) && isNumber(input)){
+            if (input === '') {
+                showMessage(`Hurray!! you guessed the number`);
+            } else {
+                counter++;
+                showMessage(`Guesses: ${counter}`);
+            }
+        } else {
+            showMessage('Type a valid number > 5 and < 50');
+        }
+    } else {
+        showMessage('Type or choose number');
+    }
 });
 
+btnReset.addEventListener('click', function() {
+    console.log(this.value);
+    counterMessage = '';
+    counter = 0;
+    input.value = 0;
+    //showMessage(counterMessage);
+});
